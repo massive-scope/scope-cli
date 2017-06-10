@@ -1,0 +1,36 @@
+{
+  "chmod": "0755",
+  "directories": [
+    "src"
+  ],
+  "files": [
+    "LICENSE",
+    "vendor/composer/installed.json"
+  ],
+  "finder": [
+    {
+      "name": [
+        "LICENSE*",
+        "License*",
+        "*.php",
+        "*.xml",
+        "*.xsd",
+        "*.yaml",
+        "*.yml",
+        "*.json",
+        "*.crt"
+      ],
+      "exclude": [
+        "phpunit",
+        "Tests",
+        "tests"
+      ],
+      "in": ["bin", "src", "vendor"]
+    }
+  ],
+  "git-version": "git_version",
+  "intercept": true,
+  "main": "bin/scope",
+  "output": "scope.phar",
+  "stub": true
+}

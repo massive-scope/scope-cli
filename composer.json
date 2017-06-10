@@ -1,0 +1,14 @@
+{
+    "name": "scope/cli",
+    "autoload": {
+        "psr-4": {
+            "Scope\\Cli\\": "src/"
+        }
+    },
+    "require": {
+        "symfony/console": "^3.3"
+    },
+    "require-dev": {
+        "kherge/box": "^2.7"
+    }
+}
