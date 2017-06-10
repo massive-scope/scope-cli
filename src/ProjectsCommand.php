@@ -11,6 +11,18 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 class ProjectsCommand extends Command
 {
+    /**
+     * @var Client
+     */
+    private $client;
+
+    public function __construct(Client $client)
+    {
+        parent::__construct();
+
+        $this->client = $client;
+    }
+
     protected function configure()
     {
         $this->setName('projects');
@@ -23,8 +35,7 @@ class ProjectsCommand extends Command
         $page = $input->getOption('page');
         $pageSize = $input->getOption('page-size');
 
-        $client = new Client();
-        $data = $client->query(
+        $data = $this->client->query(
             sprintf(
                 '{projects(offset:%s,size:%s){total,items{id,title}}}',
                 ($page - 1) * $pageSize,
@@ -37,11 +48,8 @@ class ProjectsCommand extends Command
         $output->writeln('Total: ' . $data['total']);
 
         $table = new Table($output);
-
         $table->setHeaders(['id', 'title']);
-
         $table->setRows($data['items']);
-
         $table->render();
     }
 }
